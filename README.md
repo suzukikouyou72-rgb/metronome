@@ -23,6 +23,17 @@ python -m http.server 8765
 
 ブラウザで http://127.0.0.1:8765/ を開きます。GitHub Pages で公開すれば、スマホからも開いてホーム画面に追加できます。
 
+## PC アプリ（Windows）
+Electron で包んだ PC アプリも作れます。画面は Web 版と同じファイルを使います。
+
+```bash
+npm install
+npm run pc          # その場で起動
+npm run pc:dist     # dist/Metronome-Setup-<版>.exe（ユーザー単位のインストーラー）を作る
+```
+
+アイコンを変えたら `npm run pc:icon` で `build/icon.png` を作り直します。PC アプリの設定は PC アプリの中だけに保存され、ブラウザ版とは共有しません。
+
 ## テスト
 
 ```bash

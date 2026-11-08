@@ -6,6 +6,49 @@
   "description": "単体で動くメトロノーム（同期なし・テンポ上げつき）",
   "scripts": {
     "test": "node tests/test_logic.mjs",
-    "start": "python -m http.server 8765"
+    "start": "python -m http.server 8765",
+    "pc": "electron .",
+    "pc:dist": "electron-builder --win",
+    "pc:icon": "electron scripts/make-icon.cjs"
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^24.13.3"
+  },
+  "allowScripts": {
+    "electron@31.7.7": true
+  },
+  "main": "electron/main.cjs",
+  "build": {
+    "appId": "com.suzukikouyou72.metronome",
+    "productName": "メトロノーム",
+    "executableName": "Metronome",
+    "icon": "build/icon.png",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**",
+      "index.html",
+      "css/**",
+      "js/**",
+      "icon.svg",
+      "manifest.webmanifest",
+      "build/icon.png",
+      "!node_modules/**"
+    ],
+    "electronLanguages": [
+      "ja",
+      "en-US"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "shortcutName": "メトロノーム",
+      "artifactName": "Metronome-Setup-${version}.${ext}"
+    }
   }
 }
