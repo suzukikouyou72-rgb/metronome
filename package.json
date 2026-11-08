@@ -1,0 +1,11 @@
+{
+  "name": "metronome",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "単体で動くメトロノーム（同期なし・テンポ上げつき）",
+  "scripts": {
+    "test": "node tests/test_logic.mjs",
+    "start": "python -m http.server 8765"
+  }
+}

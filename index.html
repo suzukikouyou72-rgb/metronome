@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>メトロノーム</title>
+<meta name="theme-color" content="#1f2124">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<main id="metro">
+  <div class="hd"><span class="hdT">メトロノーム</span><button class="ib" data-sheet="#mSet" title="設定" aria-label="設定">⋯</button></div>
+  <div id="bigbeat" class="num" title="いま鳴っている拍">1</div>
+  <div id="mstat"></div>
+  <div class="beats" id="beats"></div>
+  <div class="bpmrow"><input type="number" id="bpm" class="num" value="120" min="20" max="300" aria-label="BPM"><label for="bpm">BPM</label></div>
+  <input type="range" id="bpmR" class="bpmr" min="20" max="300" value="120" aria-label="BPM のスライダー">
+  <div class="row mrow"><button class="b" id="tap">タップ</button><select id="sig" aria-label="拍子"></select><button class="swb" id="clickBtn">クリック</button><button class="swb" id="drumBtn">ドラム</button></div>
+
+  <div class="ramp">
+    <div class="row rhd"><button class="swb" id="rampBtn">テンポ上げ</button><span id="rstat" class="num"></span></div>
+    <div class="row rbox" id="rampBox">
+      <span class="rg"><input type="number" id="rn" min="1" max="64" value="4" aria-label="何小節ごとに上げるか"><label for="rn">小節ごとに +</label>
+      <input type="number" id="rm" min="1" max="50" value="5" aria-label="上げる BPM"><label for="rm">BPM</label></span>
+      <span class="rg"><label for="rmax">上限</label><input type="number" id="rmax" min="20" max="300" value="200" aria-label="上限の BPM"><label for="rmax">BPM</label></span>
+    </div>
+  </div>
+
+  <button class="b" id="play">▶ 開始</button>
+  <p class="hint">スペースキーでも開始・停止できます。テンポ上げは止めると開始のテンポに戻ります。</p>
+</main>
+
+<div id="mSet" class="ov"><div class="dlg">
+  <div class="shd"><span class="uit">設定</span><button class="ib" data-close title="閉じる" aria-label="閉じる">✕</button></div>
+  <div class="sgl">音量</div>
+  <div class="sgrp"><div class="row"><label for="vC">クリック</label><input type="range" id="vC" min="0" max="100" value="100"></div><div class="row"><label for="vD">ドラム</label><input type="range" id="vD" min="0" max="100" value="100"></div></div>
+  <div class="sgl">ドラムパターン</div>
+  <div class="sgrp"><div class="row"><select id="preset" aria-label="プリセット"></select><button class="b" id="pClear">クリア</button></div><div class="wrap"><div class="grid" id="grid"></div></div></div>
+  <div class="sgl">無音小節</div>
+  <div class="sgrp"><div class="row"><button class="swb" id="muteBtn">無音小節</button></div><div class="row mbars"><label for="mn">鳴らす</label><input type="number" id="mn" value="4" min="1" max="64"><label>小節</label><span class="sp2"></span><label for="mm">無音</label><input type="number" id="mm" value="2" min="1" max="64"><label>小節</label></div></div>
+  <div class="sgl">保存</div>
+  <p class="hint">設定はこの端末のブラウザの中だけに保存します（同期・ログインはありません）。</p>
+</div></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+// オフラインでも開けるよう、画面のファイルを端末に置いておく（先にキャッシュ、裏で更新）
+const CACHE = 'metronome-v1';
+const FILES = ['./', 'index.html', 'css/app.css', 'js/main.js', 'js/metronome.js', 'js/metronome-data.js', 'js/logic.js', 'js/synth.js', 'js/dom.js', 'manifest.webmanifest', 'icon.svg'];
+self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES))); self.skipWaiting(); });
+self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k))))); self.clients.claim(); });
+self.addEventListener('fetch', (e) => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(caches.match(e.request).then((hit) => {
+    const net = fetch(e.request).then((res) => { if (res.ok) caches.open(CACHE).then((c) => c.put(e.request, res.clone())); return res; }).catch(() => hit);
+    return hit || net;
+  }));
+});

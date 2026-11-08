@@ -1,0 +1,11 @@
+{
+  "name": "メトロノーム",
+  "short_name": "メトロノーム",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#1f2124",
+  "theme_color": "#1f2124",
+  "lang": "ja",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
